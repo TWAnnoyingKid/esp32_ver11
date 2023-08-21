@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html class="head">
+    <head >
+        <title id="Title">BME</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    </head>
+    <body>
+        <section class="layout">
+            <div class="header">
+                <h1 id="NameOfDevice" class="NameOfDevice"></h1>
+            </div>
+            <div class="main">
+                <div class="bme">
+                    <div style="width: 80%; display: inline-block;" >
+                        <h2 class="bmeTag" >溫度</h2>
+                    </div>
+                    <div style="width: 20%; display: inline;">
+                        <h2 class="bmeTag">°C</h2> 
+                    </div>
+                    <h2 id="Temp" class="bmeNumber">00.00</h2> 
+                </div>
+                <br><br>
+                <div class="bme" >
+                    <div style="width: 80%; display: inline-block;" >
+                        <h2 class="bmeTag" >濕度</h2>
+                    </div>
+                    <div style="width: 20%; display: inline;">
+                        <h2 class="bmeTag">%</h2> 
+                    </div>
+                    <h2 id="Humid" class="bmeNumber">00.00</h2> 
+                </div>
+            </div>
+            <div class="footer">
+                <div class="goBackDevicePage">
+                    <a href="devicepage.html">
+                        <button type="button" id="back" class="back">回到裝置頁</button><br>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <dialog id="UserLost">
+            <h1>糟糕! 甚麼地方出錯了!<br>請再試一次!</h1>
+            <button onclick="UserLost.close(); location.href='mainpage.html'">確認</button>
+        </dialog>
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+            const firebaseConfig = {
+                apiKey: "AIzaSyAF4OdtYUAomk_4WnvE5MXb_nphlQ33UyA",
+                authDomain: "esp8266-ai2.firebaseapp.com",
+                databaseURL: "https://esp8266-ai2-default-rtdb.firebaseio.com",
+                projectId: "esp8266-ai2",
+                storageBucket: "esp8266-ai2.appspot.com",
+                messagingSenderId: "245671703015",
+                appId: "1:245671703015:web:28612316e5ec39dd6bcd42"
+            };
+
+            const app = initializeApp(firebaseConfig);
+            import { getDatabase, set, get, update, remove, ref, onValue } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+            const db = getDatabase();
+            if(!Cookies.get('device')){
+                UserLost.showModal()
+            }
+            const deviceName = Cookies.get('device');
+            var NameOfDevice = document.querySelector('#NameOfDevice')
+            var MAC = deviceName.split(",")[1]
+            const getTemp = ref(db, MAC + '/Temperature')
+            const getHumid = ref(db, MAC + '/Humidity')
+            NameOfDevice.innerHTML = deviceName.split(",")[0]
+
+            onValue(getTemp, (snapshot) => {
+                var Temp = document.querySelector('#Temp')
+                Temp.innerHTML = snapshot.val()
+            })
+            onValue(getHumid, (snapshot) => {
+                var Humid = document.querySelector('#Humid')
+                Humid.innerHTML = snapshot.val()
+            })
+
+        </script>
+    </body>
+</html>
