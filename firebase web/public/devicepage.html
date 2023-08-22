@@ -51,6 +51,7 @@
 
             import { getDatabase, get , ref, child, onValue } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
             const db = getDatabase();
+            const adbref = ref(db);
 
             function deviceCheck(){
                 if(Cookies.get('user')){
@@ -60,10 +61,15 @@
                         Cookies.remove('device')
                     }
                     onValue(dbref, (snapshot) => {
-                        snapshot.forEach((childSnapshot) => {
-                            Cookies.set('saveName', childSnapshot.key)
-                            let devicestop = childSnapshot.val()
-                            addItems(devicestop);
+                        snapshot.forEach((devicetag) => {
+                            Cookies.set('saveName', devicetag.key)
+                            var a = devicetag.key
+                            get(child(adbref, user + '/' + a + "/set"))
+                            .then((deviceInfo)=>{
+                                var devicestop = deviceInfo.val()
+                                var mac = devicestop.replace('"', '').split(" ")[1]
+                                addItems(devicestop, a);
+                            })
                         })
                     }) 
                 }else{
@@ -72,17 +78,19 @@
                 }
             }
 
-            function addItems(devicestop){
+            function addItems(devicestop, a){
                 var deviceplace = document.getElementById('deviceplace')
                 var _devicestop = document.createElement('button')
                 var p = document.createElement('p')
 
                 p.innerHTML="  "
+                _devicestop.class = a
                 _devicestop.innerHTML = devicestop.replace('"', '').split(" ")[0]
                 _devicestop.name = "devices"
                 _devicestop.id = devicestop.replace('"', '').replace('"', '').split(" ")
                 _devicestop.onclick = function deviceSetup(){
                     Cookies.set('device', _devicestop.id)
+                    Cookies.set('tag', _devicestop.class)
                     location.href = devicestop.replace('"', '').split(" ")[2].replace('"', '') + ".html"
                 }
                 deviceplace.appendChild(_devicestop);

@@ -73,7 +73,7 @@
             import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
 
             const firebaseConfig = {
-                apiKey: "AIzaSyAF4OdtYUAomk_4WnvE5MXb_nphlQ33UyA",
+            apiKey: "AIzaSyAF4OdtYUAomk_4WnvE5MXb_nphlQ33UyA",
                 authDomain: "esp8266-ai2.firebaseapp.com",
                 databaseURL: "https://esp8266-ai2-default-rtdb.firebaseio.com",
                 projectId: "esp8266-ai2",
@@ -81,10 +81,23 @@
                 messagingSenderId: "245671703015",
                 appId: "1:245671703015:web:28612316e5ec39dd6bcd42"
             };
-
             const app = initializeApp(firebaseConfig);
+            const db = getDatabase(app);
+
+            const firebaseUserConfig = {
+                apiKey: "AIzaSyCF75el0I5Ni587JaOnNVOoqAzWuJG2agY",
+                authDomain: "user-login-time.firebaseapp.com",
+                databaseURL: "https://user-login-time-default-rtdb.firebaseio.com",
+                projectId: "user-login-time",
+                storageBucket: "user-login-time.appspot.com",
+                messagingSenderId: "975739925033",
+                appId: "1:975739925033:web:bbb3193030ed8e5425e238",
+                measurementId: "G-KYLDQQK1GK"
+            };
+            const userapp = initializeApp(firebaseUserConfig, "secondary");
+            const userdb = getDatabase(userapp);
+
             import { getDatabase, set, get, update, remove, ref, onValue, child } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
-            const db = getDatabase();
             if(!Cookies.get('device')){
                 UserLost.showModal()
             }

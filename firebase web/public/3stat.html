@@ -59,9 +59,11 @@
                             <button type="button" id="TimeOffOfD3" class="Time">設定關閉時間</button>
                         </div>
                     </div>
-                </div>
+                </div><br>
                 <br><br><br>
+                <button>刪除裝置</button>
             </div>
+            
             <div class="footer">
                 <div class="goBackDevicePage">
                     <a href="devicepage.html">
@@ -208,6 +210,9 @@
                 messagingSenderId: "245671703015",
                 appId: "1:245671703015:web:28612316e5ec39dd6bcd42"
             };
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase(app);
+
             const firebaseUserConfig = {
                 apiKey: "AIzaSyCF75el0I5Ni587JaOnNVOoqAzWuJG2agY",
                 authDomain: "user-login-time.firebaseapp.com",
@@ -218,16 +223,16 @@
                 appId: "1:975739925033:web:bbb3193030ed8e5425e238",
                 measurementId: "G-KYLDQQK1GK"
             };
-
-            const app = initializeApp(firebaseConfig);
             const userapp = initializeApp(firebaseUserConfig, "secondary");
-            import { getDatabase, set, get, update, remove, ref, onValue } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
-            const db = getDatabase(app);
             const userdb = getDatabase(userapp);
+            
+            import { getDatabase, set, get, update, remove, ref, onValue } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+            const user = Cookies.get('user')
             if(!Cookies.get('device')){
                 UserLost.showModal()
             }
             const deviceName = Cookies.get('device');
+            const deviceTag = Cookies.get('tag');
 
             var NameOfDevice = document.querySelector('#NameOfDevice')
             var MAC = deviceName.split(",")[1]
@@ -685,6 +690,28 @@
                 D3name.innerHTML = '原本的裝置名稱：' + NameOfD3.innerHTML
             }
 
+            function newD1name(){
+                NameOfD1.innerHTML = D1newName.value
+                update(ref(userdb,  user + "/" + deviceTag),{
+                    set: '"' + NameOfDevice.innerHTML + " " + MAC + " 3stat " + D1newName.value + " " + NameOfD2.innerHTML + " " + NameOfD3.innerHTML + '"'
+                })
+                nameD1.close()
+            }
+            function newD2name(){
+                NameOfD2.innerHTML = D2newName.value
+                update(ref(userdb,  user + "/" + deviceTag),{
+                    set: '"' + NameOfDevice.innerHTML + " " + MAC + " 3stat " + NameOfD1.innerHTML + " " + D2newName.value + " " + NameOfD3.innerHTML + '"'
+                })
+                nameD2.close()
+            }
+            function newD3name(){
+                NameOfD3.innerHTML = D3newName.value
+                update(ref(userdb,  user + "/" + deviceTag),{
+                    set: '"' + NameOfDevice.innerHTML + " " + MAC + " 3stat " + NameOfD1.innerHTML + " " +NameOfD2.innerHTML + " " + D3newName.value + '"'
+                })
+                nameD3.close()
+            }
+
             StatOfD1.addEventListener('click', ChangeD1)
             StatOfD2.addEventListener('click', ChangeD2)
             StatOfD3.addEventListener('click', ChangeD3)
@@ -713,6 +740,10 @@
             TCD1Setconfirm.addEventListener('click', SetD1CT)
             TCD2Setconfirm.addEventListener('click', SetD2CT)
             TCD3Setconfirm.addEventListener('click', SetD3CT)
+
+            D1confirm.addEventListener('click', newD1name)
+            D2confirm.addEventListener('click', newD2name)
+            D3confirm.addEventListener('click', newD3name)
 
         </script>
     </body>
