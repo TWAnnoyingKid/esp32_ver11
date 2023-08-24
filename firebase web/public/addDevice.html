@@ -180,7 +180,21 @@
                     })
                     var dBTN = document.getElementById(macinfo.innerHTML);
                     dBTN.remove();
+                }else if(eleinfo.innerHTML == 'cam'){
+                    var dset = '"' + devicename.value + ' ' + macinfo.innerHTML + ' ' + eleinfo.innerHTML + ' ' + ipinfo.innerHTML + '"'
+                    update(ref(userdb, user +"/裝置8"),{
+                        set : dset
+                    })
+                    update(ref(devicedb, macinfo.innerHTML + '/USER' + user),{
+                        USER: user
+                    })
+                    update(ref(devicedb, macinfo.innerHTML),{
+                        ip: ipinfo.innerHTML
+                    })
+                    var dBTN = document.getElementById(macinfo.innerHTML);
+                    dBTN.remove();
                 }
+
                 deviceSet.close()
             }
 
