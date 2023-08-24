@@ -127,8 +127,8 @@ button[name=NEWdevices]{
     display: grid;
     grid:
     "header" 18%
-    "main" 65%
-    "footer" 10%
+    "main" 55%
+    "footer" 20%
     / 100%;
     gap: 8px;
 }

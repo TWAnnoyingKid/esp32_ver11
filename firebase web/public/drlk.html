@@ -24,6 +24,10 @@
             </div>
             <div class="footer">
                 <div class="goBackDevicePage">
+                    <button id="delete" class="back" onclick="removeDia.showModal()">刪除裝置</button>
+                </div>
+                <br><br>
+                <div class="goBackDevicePage">
                     <a href="devicepage.html">
                         <button type="button" id="back" class="back">回到裝置頁</button><br>
                     </a>
@@ -68,6 +72,13 @@
             <h1>糟糕! 甚麼地方出錯了!<br>請再試一次!</h1>
             <button onclick="UserLost.close(); location.href='mainpage.html'">確認</button>
         </dialog>
+        <dialog id="removeDia"> 
+            <h1>刪除裝置?</h1>
+            <p>請輸入"REMOVE"以確認</p>
+            <input id="REMOVEword" placeholder="REMOVE">
+            <button id="removeConfirm">確認</button>
+            <button onclick="removeDia.close()">取消</button>
+        </dialog>
 
         <script type="module">
             import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
@@ -98,10 +109,12 @@
             const userdb = getDatabase(userapp);
 
             import { getDatabase, set, get, update, remove, ref, onValue, child } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+            const user = Cookies.get('user')
             if(!Cookies.get('device')){
                 UserLost.showModal()
             }
             const deviceName = Cookies.get('device');
+            const deviceTag = Cookies.get('tag');
 
 
             var NameOfDevice = document.querySelector('#NameOfDevice')
@@ -219,7 +232,7 @@
                         if(snapshot.val().replace('"', "").replace('"', "") == 1){
                             CardExist.showModal()
                         }else{
-                          var uid = snapshot.val().replace('"', "").replace('"', "")
+                            var uid = snapshot.val().replace('"', "").replace('"', "")
                             NewCardUid.innerHTML = uid
                             NewCard.showModal()  
                         }
@@ -232,12 +245,13 @@
                 addCard.innerHTML = '新增一張卡片'
                 NewCard.close()
                 var uid = NewCardUid.innerHTML
+                var set = uid + ": '1'"
 
                 update(ref(db, MAC),{
                     TEMP_UID: "0"
                 })
-                update(ref(db, MAC + "/UID/" + uid),{
-                    activation :"1"
+                update(ref(db, MAC + "/UID"),{
+                    set
                 })
             }
             function NewCardERROR(){
@@ -248,6 +262,20 @@
                     TEMP_UID: "0"
                 })
             }
+            function delataDevice(){
+                if(REMOVEword.value == "REMOVE"){
+                    remove(ref(userdb,  user + "/" + deviceTag))
+                    .then((snapshot)=>{
+                        remove(ref(db, MAC + '/USER' + user))
+                        .then((snapshot)=>{
+                            removeDia.close()
+                            window.location.href = "devicepage.html"
+                        })
+                    })
+                }else{
+                }
+            }
+            removeConfirm.addEventListener('click', delataDevice)
             
             openGate.addEventListener('click', opendoor)
             changePassword.addEventListener('click', setPW)
@@ -259,6 +287,6 @@
             NewCardSetERROR.addEventListener('click', NewCardERROR)
             CardExistErr.addEventListener('click', NewCardERROR)
 
-          </script>
+        </script>
     </body>
 </html>

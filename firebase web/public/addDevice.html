@@ -39,8 +39,8 @@
             <h1>請輸入連線至的WIFI的IP位址</h1>
             <input id="ip1" maxlength="3" minlength="1" placeholder="192" style="width: 50px;" value="192"> .
             <input id="ip2" maxlength="3" minlength="1" placeholder="168" style="width: 50px;" value="168"> .
-            <input id="ip3" maxlength="3" minlength="1" placeholder="xxx" style="width: 50px;"> .
-            <input id="ip4" maxlength="3" minlength="1" placeholder="xxx" style="width: 50px;">   
+            <input id="ip3" maxlength="3" minlength="1" placeholder="xxx" style="width: 50px;" value="31"> .
+            <input id="ip4" maxlength="3" minlength="1" placeholder="xxx" style="width: 50px;" value="31">   
             <p>  </p>
             <button id="ipSetconfirm" >確認</button>
             <button onclick="ipSet.close()">取消</button>
@@ -56,6 +56,10 @@
             <input type="text" id="devicename" style="width: 150px; height: 20px; font-size: 15px;">
             <button id="deviceSetconfirm" >確認</button>
             <button onclick="deviceSet.close()">取消</button>
+        </dialog>
+        <dialog id="UserLost">
+            <h1>糟糕! 甚麼地方出錯了!<br>請再試一次!</h1>
+            <button onclick="UserLost.close(); location.href='mainpage.html'">確認</button>
         </dialog>
         
         <script type="module">
@@ -94,10 +98,17 @@
             var deviceSetconfirm = document.getElementById('deviceSetconfirm')
             var macinfo = document.getElementById('macinfo')
             var eleinfo = document.getElementById('eleinfo')
-            if(Cookies.get('saveName') != ""){
-                var saveName = Cookies.get('saveName').split("裝置")[1]
+
+            if(!Cookies.get('user')){
+                UserLost.showModal()
+            }
+            if(Cookies.get('device')){
+                Cookies.remove('device')
+            }
+            if(!Cookies.get('saveName')){
+                var saveName = 0
             }else{
-                var saveName = '0'
+                var saveName = Cookies.get('saveName').split("裝置")[1]
             }
             
 
@@ -171,6 +182,26 @@
                     dBTN.remove();
                 }else if(eleinfo.innerHTML == 'bme' || eleinfo.innerHTML == 'moi'){
                     var dset = '"' + devicename.value + ' ' + macinfo.innerHTML + ' ' + eleinfo.innerHTML + '"'
+                    update(ref(userdb, user +"/裝置8"),{
+                        set : dset
+                    })
+                    update(ref(devicedb, macinfo.innerHTML + '/USER' + user),{
+                        USER: user
+                    })
+                    var dBTN = document.getElementById(macinfo.innerHTML);
+                    dBTN.remove();
+                }else if(eleinfo.innerHTML == '3stat'){
+                    var dset = '"' + devicename.value + ' ' + macinfo.innerHTML + ' ' + eleinfo.innerHTML + " 插座1 插座2 插座3" + '"'
+                    update(ref(userdb, user +"/裝置8"),{
+                        set : dset
+                    })
+                    update(ref(devicedb, macinfo.innerHTML + '/USER' + user),{
+                        USER: user
+                    })
+                    var dBTN = document.getElementById(macinfo.innerHTML);
+                    dBTN.remove();
+                }else if(eleinfo.innerHTML == 'drlk'){
+                    var dset = '"' + devicename.value + ' ' + macinfo.innerHTML + ' ' + eleinfo.innerHTML + " 智慧門鎖" + '"'
                     update(ref(userdb, user +"/裝置8"),{
                         set : dset
                     })

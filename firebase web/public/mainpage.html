@@ -45,6 +45,9 @@
             if(Cookies.get('forget')){
                 Cookies.remove('forget')
             }
+            if(Cookies.get('device')){
+                Cookies.remove('device')
+            }
 
             if (user != undefined){
                 welcome.innerHTML = "歡迎! 使用者";

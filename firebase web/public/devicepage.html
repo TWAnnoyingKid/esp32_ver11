@@ -52,6 +52,9 @@
             import { getDatabase, get , ref, child, onValue } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
             const db = getDatabase();
             const adbref = ref(db);
+            if(!Cookies.get('user')){
+                UserLost.showModal()
+            }
 
             function deviceCheck(){
                 if(Cookies.get('user')){

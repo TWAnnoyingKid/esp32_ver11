@@ -75,6 +75,9 @@
             if(Cookies.get('forget')){
                 Cookies.remove('forget')
             }
+            if(Cookies.get('device')){
+                Cookies.remove('device')
+            }
 
             function loginData() {
                 const dbref = ref(db);

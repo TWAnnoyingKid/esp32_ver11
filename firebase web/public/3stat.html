@@ -61,10 +61,14 @@
                     </div>
                 </div><br>
                 <br><br><br>
-                <button>刪除裝置</button>
+                
             </div>
             
             <div class="footer">
+                <div class="goBackDevicePage">
+                    <button id="delete" class="back" onclick="removeDia.showModal()">刪除裝置</button>
+                </div>
+                <br><br>
                 <div class="goBackDevicePage">
                     <a href="devicepage.html">
                         <button type="button" id="back" class="back">回到裝置頁</button><br>
@@ -198,6 +202,14 @@
             <button onclick="UserLost.close(); location.href='mainpage.html'">確認</button>
         </dialog>
 
+        <dialog id="removeDia"> 
+            <h1>刪除裝置?</h1>
+            <p>請輸入"REMOVE"以確認</p>
+            <input id="REMOVEword" placeholder="REMOVE">
+            <button id="removeConfirm">確認</button>
+            <button onclick="removeDia.close()">取消</button>
+        </dialog>
+
         <script type="module">
             import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
 
@@ -252,9 +264,6 @@
             const getD2CT = ref(db, MAC + '/CT/D2')
             const getD3CT = ref(db, MAC + '/CT/D3')
 
-            var NameOfD1 = document.querySelector('#NameOfD1')
-            var NameOfD2 = document.querySelector('#NameOfD2')
-            var NameOfD3 = document.querySelector('#NameOfD3')
             var StatOfD1 = document.querySelector('#StatOfD1')
             var StatOfD2 = document.querySelector('#StatOfD2')
             var StatOfD3 = document.querySelector('#StatOfD3')
@@ -276,12 +285,6 @@
             var TCD1Check = document.querySelector('#TCD1Check')
             var TCD2Check = document.querySelector('#TCD2Check')
             var TCD3Check = document.querySelector('#TCD3Check')
-            var TOD1Set = document.querySelector('#TOD1Set')
-            var TOD2Set = document.querySelector('#TOD2Set')
-            var TOD3Set = document.querySelector('#TOD3Set')
-            var TCD1Set = document.querySelector('#TCD1Set')
-            var TCD2Set = document.querySelector('#TCD2Set')
-            var TCD3Set = document.querySelector('#TCD3Set')
             var TOD1confirm = document.querySelector('#TOD1confirm')
             var TOD2confirm = document.querySelector('#TOD2confirm')
             var TOD3confirm = document.querySelector('#TOD3confirm')
@@ -294,20 +297,7 @@
             var TCD1Setconfirm = document.querySelector('#TCD1Setconfirm')
             var TCD2Setconfirm = document.querySelector('#TCD2Setconfirm')
             var TCD3Setconfirm = document.querySelector('#TCD3Setconfirm')
-            var TOD1hr = document.querySelector('#TOD1hr')
-            var TOD2hr = document.querySelector('#TOD2hr')
-            var TOD3hr = document.querySelector('#TOD3hr')
-            var TOD1min = document.querySelector('#TOD1min')
-            var TOD2min = document.querySelector('#TOD2min')
-            var TOD3min = document.querySelector('#TOD3min')
-            var TCD1hr = document.querySelector('#TCD1hr')
-            var TCD2hr = document.querySelector('#TCD2hr')
-            var TCD3hr = document.querySelector('#TCD3hr')
-            var TCD1min = document.querySelector('#TCD1min')
-            var TCD2min = document.querySelector('#TCD2min')
-            var TCD3min = document.querySelector('#TCD3min')
-            var HourSetWrong = document.querySelector('#HourSetWrong')
-            var MinSetWrong = document.querySelector('#MinSetWrong')
+            var removeConfirm = document.querySelector('#removeConfirm')
 
             NameOfDevice.innerHTML = deviceName.split(",")[0]
             NameOfD1.innerHTML = deviceName.split(",")[3]
@@ -712,6 +702,20 @@
                 nameD3.close()
             }
 
+            function delataDevice(){
+                if(REMOVEword.value == "REMOVE"){
+                    remove(ref(userdb,  user + "/" + deviceTag))
+                    .then((snapshot)=>{
+                        remove(ref(db, MAC + '/USER' + user))
+                        .then((snapshot)=>{
+                            removeDia.close()
+                            window.location.href = "devicepage.html"
+                        })
+                    })
+                }else{
+                }
+            }
+            removeConfirm.addEventListener('click', delataDevice)
             StatOfD1.addEventListener('click', ChangeD1)
             StatOfD2.addEventListener('click', ChangeD2)
             StatOfD3.addEventListener('click', ChangeD3)
@@ -744,6 +748,8 @@
             D1confirm.addEventListener('click', newD1name)
             D2confirm.addEventListener('click', newD2name)
             D3confirm.addEventListener('click', newD3name)
+
+            
 
         </script>
     </body>
