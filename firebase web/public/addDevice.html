@@ -96,7 +96,7 @@
             var macinfo = document.getElementById('macinfo')
             var eleinfo = document.getElementById('eleinfo')
             if(Cookies.get('saveName') != ""){
-                var saveName = Cookies.get('saveName').split("裝置")[1]
+                var saveName = Cookies.get('saveName')
             }else{
                 var saveName = '0'
             }
@@ -156,10 +156,12 @@
             }
 
             function saveDevice(){
-                var saveNameTag = "裝置" + (saveName + 1)
+                saveName = Number(saveName) + 1
+                Cookies.set('saveName', saveName)
+                var saveNameTag = "裝置" + saveName
                 if(eleinfo.innerHTML == 'strip'){
                     var dset = '"' + devicename.value + ' ' + macinfo.innerHTML + ' ' + eleinfo.innerHTML + '"'
-                    update(ref(userdb, user +"/裝置8"),{
+                    update(ref(userdb, user + "/" + saveNameTag),{
                         set : dset
                     })
                     update(ref(devicedb, macinfo.innerHTML + '/USER' + user),{
@@ -172,7 +174,7 @@
                     dBTN.remove();
                 }else if(eleinfo.innerHTML == 'bme' || eleinfo.innerHTML == 'moi'){
                     var dset = '"' + devicename.value + ' ' + macinfo.innerHTML + ' ' + eleinfo.innerHTML + '"'
-                    update(ref(userdb, user +"/裝置8"),{
+                    update(ref(userdb, user + "/" + saveNameTag),{
                         set : dset
                     })
                     update(ref(devicedb, macinfo.innerHTML + '/USER' + user),{
@@ -182,7 +184,7 @@
                     dBTN.remove();
                 }else if(eleinfo.innerHTML == 'cam'){
                     var dset = '"' + devicename.value + ' ' + macinfo.innerHTML + ' ' + eleinfo.innerHTML + ' ' + ipinfo.innerHTML + '"'
-                    update(ref(userdb, user +"/裝置8"),{
+                    update(ref(userdb, user + "/" + saveNameTag),{
                         set : dset
                     })
                     update(ref(devicedb, macinfo.innerHTML + '/USER' + user),{

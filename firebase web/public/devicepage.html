@@ -60,12 +60,11 @@
                 if(Cookies.get('user')){
                     const user = Cookies.get('user')
                     const dbref = ref(db, user)
-                    if(Cookies.get('device')){
-                        Cookies.remove('device')
-                    }
+                    Cookies.remove('device')
+                    Cookies.remove('tag')
                     onValue(dbref, (snapshot) => {
                         snapshot.forEach((devicetag) => {
-                            Cookies.set('saveName', devicetag.key)
+                            Cookies.set('saveName', devicetag.key.split("裝置")[1])
                             var a = devicetag.key
                             get(child(adbref, user + '/' + a + "/set"))
                             .then((deviceInfo)=>{

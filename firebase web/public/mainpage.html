@@ -42,12 +42,10 @@
             var logout = document.querySelector("#logout");
             var username = document.querySelector("#username");
             var welcome = document.querySelector("#welcome");
-            if(Cookies.get('forget')){
-                Cookies.remove('forget')
-            }
-            if(Cookies.get('device')){
-                Cookies.remove('device')
-            }
+            Cookies.remove('forget')
+            Cookies.remove('device')
+            Cookies.remove('saveName')
+            Cookies.remove('tag')
 
             if (user != undefined){
                 welcome.innerHTML = "歡迎! 使用者";
