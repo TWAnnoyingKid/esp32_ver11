@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html class="head">
+    <head >
+        <title id="Title">addDevices</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+        
+    </head>
+    <body Align="Center">
+        <section class="mainlayout">
+            <div class="mainheader">
+                <div class="SS" onclick="location.href='mainpage.html'">
+                    <div style="width:35%">
+                        <img src="picture\sloth.png" width="90%" height="90%">  
+                    </div>
+                    <h1> sMART <br> sTUFF</h1>
+                </div>
+            </div>
+            <div class="maincenter">
+                <div class="NEWdeviceBtn">
+                    <button id="search" onclick="ipSet.showModal()" style="width: 150px; height: 35px; font-size: 20px; font-weight: 700;">搜尋裝置</button></div>
+                    <br>
+                    <div id="deviceplace" style="overflow-y:scroll; height: 435px; width: 380px;" Align="Center"></div>
+                </div>
+            <div class="mainfooter">
+                    <div class="goBackDevicePage">
+                        <a href="devicepage.html">
+                            <button type="button" id="back" class="back">回到裝置頁</button><br>
+                        </a>
+                    </div>
+                </div>
+        </section>
+
+        <dialog id="ipSet">
+            <h1>請輸入連線至的WIFI的IP位址</h1>
+            <input id="ip1" maxlength="3" minlength="1" placeholder="192" style="width: 50px;" value="192"> .
+            <input id="ip2" maxlength="3" minlength="1" placeholder="168" style="width: 50px;" value="168"> .
+            <input id="ip3" maxlength="3" minlength="1" placeholder="xxx" style="width: 50px;"> .
+            <input id="ip4" maxlength="3" minlength="1" placeholder="xxx" style="width: 50px;">   
+            <p>  </p>
+            <button id="ipSetconfirm" >確認</button>
+            <button onclick="ipSet.close()">取消</button>
+        </dialog>
+        <dialog id="ipSetError">
+            <h1>IP位址輸入錯誤</h1>
+            <button onclick="ipSetError.close()">取消</button>
+        </dialog>
+        <dialog id="deviceSet">
+            <h1>請輸入裝置名稱</h1>
+            <p id="macinfo" style="display: none;"></p>
+            <p id="eleinfo" style="display: none;"></p>
+            <p id="ipinfo" style="display: none;"></p>
+            <input type="text" id="devicename" style="width: 150px; height: 20px; font-size: 15px;">
+            <button id="deviceSetconfirm" >確認</button>
+            <button onclick="deviceSet.close()">取消</button>
+        </dialog>
+        
+        <script type="module" src=".\js\addDevicejs.js"></script>
+        <script type="module" src=".\js\ipurl.js"></script>
+        
+    </body>
+</html>

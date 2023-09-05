@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="head">
+    <head>
+        <title id="Title">3STAT</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    </head>
+    <body>
+        <section class="layout">
+            <div class="header">
+                <h1 id="NameOfDevice" class="NameOfDevice"></h1>
+            </div>
+            <div class="main">
+                <div class="btn">
+                    <div class="center">
+                        <img src="picture\edit.png" alt="Image" width="25px" height="25px" id="newD1" class="ChangeName">
+                        <h2 id="NameOfD1" class="name"></h2>
+                    </div> 
+                    <div class="stat">
+                        <div style="width:50%;">
+                            <button type="button" id="StatOfD1" class="SW">開啟</button>
+                        </div>
+                        <div style="width:180%">
+                            <button type="button" id="TimeOnOfD1" class="Time">設定開啟時間</button>
+                            <button type="button" id="TimeOffOfD1" class="Time">設定關閉時間</button>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="btn">
+                    <div class="center">
+                        <img src="picture\edit.png" alt="Image" width="25px" height="25px" id="newD2" class="ChangeName" >
+                        <h2 id="NameOfD2" class="name"></h2>
+                    </div>
+                    <div class="stat">
+                        <div style="width:50%">
+                            <button type="button" id="StatOfD2" class="SW">開啟</button>
+                        </div>
+                        <div style="width:180%">
+                            <button type="button" id="TimeOnOfD2" class="Time">設定開啟時間</button>
+                            <button type="button" id="TimeOffOfD2" class="Time">設定關閉時間</button>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <div class="btn">
+                    <div style="width:100%">
+                        <img src="picture\edit.png" alt="Image" width="25px" height="25px" id="newD3" class="ChangeName">
+                        <h2 id="NameOfD3" class="name"></h2>
+                    </div>
+                    <div class="stat">
+                        <div style="width:50%">
+                            <button type="button" id="StatOfD3" class="SW">開啟</button>
+                        </div>
+                        <div style="width:180%">
+                            <button type="button" id="TimeOnOfD3" class="Time">設定開啟時間</button>
+                            <button type="button" id="TimeOffOfD3" class="Time">設定關閉時間</button>
+                        </div>
+                    </div>
+                </div><br>
+                <br><br><br>
+                
+            </div>
+            
+            <div class="footer">
+                <div class="goBackDevicePage">
+                    <button id="delete" class="back" onclick="removeDia.showModal()">刪除裝置</button>
+                </div>
+                <br><br>
+                <div class="goBackDevicePage">
+                    <a href="devicepage.html">
+                        <button type="button" id="back" class="back">回到裝置頁</button><br>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <dialog id="nameD1">
+            <h1>請輸入新的裝置名稱</h1>
+            <p id="D1name"></p>
+            <input id="D1newName">
+            <button id="D1confirm">確認</button>
+            <button onclick="nameD1.close()">取消</button>
+        </dialog>
+        <dialog id="nameD2">
+            <h1>請輸入新的裝置名稱</h1>
+            <p id="D2name"></p>
+            <input id="D2newName">
+            <button id="D2confirm">確認</button>
+            <button onclick="nameD2.close()">取消</button>
+        </dialog>
+        <dialog id="nameD3">
+            <h1>請輸入新的裝置名稱</h1>
+            <p id="D3name"></p>
+            <input id="D3newName">
+            <button id="D3confirm">確認</button>
+            <button onclick="nameD3.close()">取消</button>
+        </dialog>
+
+        <dialog id="TOD1Check">
+            <h1>是否更改開啟時間?</h1>
+            <button id="TOD1confirm">確認</button>
+            <button onclick="TOD1Check.close()">取消</button>
+        </dialog>
+        <dialog id="TOD2Check">
+            <h1>是否更改開啟時間?</h1>
+            <button id="TOD2confirm">確認</button>
+            <button onclick="TOD2Check.close()">取消</button>
+        </dialog>
+        <dialog id="TOD3Check">
+            <h1>是否更改開啟時間?</h1>
+            <button id="TOD3confirm">確認</button>
+            <button onclick="TOD3Check.close()">取消</button>
+        </dialog>
+
+        <dialog id="TOD1Set">
+            <h1>設定開啟時間</h1>
+            <input id="TOD1hr" type="number" min="0" max="23">
+            時 : 
+            <input id="TOD1min" type="number" min="0" max="59">
+            分
+            <button id="TOD1Setconfirm">確認</button>
+            <button onclick="TOD1Set.close()">取消</button>
+        </dialog>
+        <dialog id="TOD2Set">
+            <h1>設定開啟時間?</h1>
+            <input id="TOD2hr" type="number" min="0" max="23">
+            時 : 
+            <input id="TOD2min" type="number" min="0" max="59">
+            分
+            <button id="TOD2Setconfirm">確認</button>
+            <button onclick="TOD2Set.close()">取消</button>
+        </dialog>
+        <dialog id="TOD3Set">
+            <h1>設定開啟時間?</h1>
+            <input id="TOD3hr" type="number" min="0" max="23">
+            時 : 
+            <input id="TOD3min" type="number" min="0" max="59">
+            分
+            <button id="TOD3Setconfirm">確認</button>
+            <button onclick="TOD3Set.close()">取消</button>
+        </dialog>
+
+        <dialog id="TCD1Check">
+            <h1>是否更改關閉時間?</h1>
+            <button id="TCD1confirm">確認</button>
+            <button onclick="TCD1Check.close()">取消</button>
+        </dialog>
+        <dialog id="TCD2Check">
+            <h1>是否更改關閉時間?</h1>
+            <button id="TCD2confirm">確認</button>
+            <button onclick="TCD2Check.close()">取消</button>
+        </dialog>
+        <dialog id="TCD3Check">
+            <h1>是否更改關閉時間?</h1>
+            <button id="TCD3confirm">確認</button>
+            <button onclick="TCD3Check.close()">取消</button>
+        </dialog>
+
+        <dialog id="TCD1Set">
+            <h1>設定關閉時間</h1>
+            <input id="TCD1hr" type="number" min="0" max="23">
+            時 : 
+            <input id="TCD1min" type="number" min="0" max="59">
+            分
+            <button id="TCD1Setconfirm">確認</button>
+            <button onclick="TCD1Set.close()">取消</button>
+        </dialog>
+        <dialog id="TCD2Set">
+            <h1>設定關閉時間?</h1>
+            <input id="TCD2hr" type="number" min="0" max="23">
+            時 : 
+            <input id="TCD2min" type="number" min="0" max="59">
+            分
+            <button id="TCD2Setconfirm">確認</button>
+            <button onclick="TCD2Set.close()">取消</button>
+        </dialog>
+        <dialog id="TCD3Set">
+            <h1>設定關閉時間?</h1>
+            <input id="TCD3hr" type="number" min="0" max="23">
+            時 : 
+            <input id="TCD3min" type="number" min="0" max="59">
+            分
+            <button id="TCD3Setconfirm">確認</button>
+            <button onclick="TCD3Set.close()">取消</button>
+        </dialog>
+
+        <dialog id="HourSetWrong">
+            <h1>Hour 輸入出現問題</h1>
+            <p>Hour 設定範圍為 '0~23'</p>
+            <button onclick="HourSetWrong.close()">確定</button>
+        </dialog>
+        <dialog id="MinSetWrong">
+            <h1>Minute 輸入出現問題</h1>
+            <p>Minute 設定範圍為 '0~59'</p>
+            <button onclick="MinSetWrong.close()">確定</button>
+        </dialog>
+        <dialog id="UserLost">
+            <h1>糟糕! 甚麼地方出錯了!<br>請再試一次!</h1>
+            <button onclick="UserLost.close(); location.href='mainpage.html'">確認</button>
+        </dialog>
+
+        <dialog id="removeDia"> 
+            <h1>刪除裝置?</h1>
+            <p>請輸入"REMOVE"以確認</p>
+            <input id="REMOVEword" placeholder="REMOVE">
+            <button id="removeConfirm">確認</button>
+            <button onclick="removeDia.close()">取消</button>
+        </dialog>
+
+        <script type="module" src=".\js\3statjs.js"></script>
+    </body>
+</html>
