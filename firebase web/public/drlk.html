@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html class="head">
+    <head>
+        <title id="Title">DRLK</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    </head>
+    <body >
+        <section class="layout">
+            <div class="header">
+                <br>
+                <img src="picture\return.png" width="50px" height="50px" onclick="location.href='devicepage.html'" class="return"> <br>
+            </div>
+            <div class="main">
+                <h1 id="NameOfDevice" class="NameOfDevice"></h1>
+                <div style="display: flex;justify-content: center;align-items: center; ">
+                    <img src="picture\online.png" width="16px" height="16px"> <br>
+                </div>
+                <br><br>
+                <div style="width: 60%;margin:0px auto;"  Align="Center">
+                    <img src="picture\lock.png" width="120px" height="120px" id="openGate" class="gatelock" name="lock"><br>
+                    <p style="display: inline;font-size: 200%;color: azure;font-weight:700;" id="gatestat">關門</p><br><br>
+                    <button id="changePassword" class="Time">設定密碼</button><br><br>
+                    <button id="tempPassword" class="Time">建立暫時密碼</button><br>
+                    <p id="tempPW"  Align="Center" style="width: 180px;margin:0px auto; display: block;color: azure;font-weight:700;">目前無暫時密碼</p><br><br>
+                    <button id="addCard" class="Time">新增一張卡片</button><br><br>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="goBackDevicePage">
+                    <button id="delete" class="back" onclick="removeDia.showModal()">刪除裝置</button> 
+                    <p style="color: rgb(8, 8, 48);;">??????</p>
+                    <button id="move" class="back" onclick="removeDia.showModal()">移動裝置</button>
+                </div>
+            </div>
+        </section>
+        
+        <br><br>
+        <dialog id="PWCheck"  style="width: 250px;" Align="Center">
+            <br>
+            <p style="font-size: 160%; font-weight: 700; display: inline;">更改密碼?</p>
+            <br><br>
+            <ul style="padding: 0; margin: 0; height: 30px;">
+                <button id="PWconfirm" class="enter" onclick="oldPWCheck.showModal();PWCheck.close()">確認</button>
+                <button onclick="PWCheck.close()" class="cancel">取消</button>
+            </ul>
+        </dialog>
+        <dialog id="oldPWCheck"style="width: 250px;" Align="Center"> 
+            <section class="diasection">
+                <div class="name-header">
+                    <p style="font-size: 160%; font-weight: 700;">請輸入舊密碼</p>
+                </div>
+                <div class="name-main" Align="Center"><br><br>
+                    <input id="oldPW" maxlength="12" minlength="6" placeholder="請輸入6-12位數字" class="diainput">
+                </div>
+                <ul style="padding: 0; margin: 0;">
+                    <button id="oldPWconfirm" class="enter">確認</button>
+                    <button onclick="oldPWCheck.close()" class="cancel">取消</button>
+                </ul>
+            </section>
+        </dialog>
+        <dialog id="PWerror"style="width: 250px;" Align="Center">
+            <br>
+            <p style="font-size: 160%; font-weight: 700; display: inline;">密碼錯誤</p>
+            <br><br>
+            <ul style="padding: 0; margin: 0; height: 30px;">
+                <button id="PWconfirm" class="enter1"  onclick="oldPWCheck.close(); PWerror.close()">確認</button>
+            </ul> 
+        </dialog>
+        <dialog id="PWSet">
+            <h1>設定密碼</h1>
+            <input id="PW" maxlength="12" minlength="6" placeholder="請輸入6-12位數字">
+            <button id="PWSetconfirm" >確認</button>
+            <button onclick="PWSet.close()">取消</button>
+        </dialog>
+        <dialog id="NewCard" style="width: 250px;" Align="Center">
+            <br>
+            <p style="font-size: 160%; font-weight: 700; display: inline;">偵測到卡片</p>
+            <p>是否新增?</p>
+            <p style="display: none ;" id="NewCardUid"></p>
+            <br><br>
+            <ul style="padding: 0; margin: 0; height: 50px;">
+                <button id="NewCardSetconfirm" class="enter">確認</button>
+                <button id="NewCardSetERROR" class="cancel">取消</button>
+            </ul>
+        </dialog>
+        <dialog id="CardExist" style="width: 250px;" Align="Center">
+            <br>
+            <p style="font-size: 160%; font-weight: 700; display: inline;">卡片已經存在</p>
+            <br><br>
+            <ul style="padding: 0; margin: 0; height: 30px;">
+                <button id="CardExistErr" class="enter1">確認</button>
+            </ul>
+        </dialog>
+        <dialog id="UserLost"  class="wrong" style="width: 300px;" Align="Center">
+            <br>
+            <p style="font-size: 160%; font-weight: 700;">糟糕! 甚麼地方出錯了!<br>請再試一次!</p>
+            <ul style="padding: 0; margin: 0; height: 30px;">
+                <button onclick="UserLost.close(); location.href='mainpage.html'" class="enter1">確認</button>
+            </ul>
+        </dialog>
+
+        <dialog id="removeDia" class="timewrong" style="width: 300px;" Align="Center"> 
+            <section class="diasection">
+                <div class="name-header">
+                    <p style="font-size: 200%; font-weight: 700;">刪除裝置?</p>
+                </div>
+                <div class="name-main" Align="Center"><br>
+                    <p>請輸入"REMOVE"以確認</p>
+                    <input id="REMOVEword" placeholder="REMOVE" class="diainput">
+                </div>
+                <ul style="padding: 0; margin: 0;">
+                    <button id="removeConfirm" class="enter">確認</button>
+                    <button onclick="removeDia.close()" class="cancel">取消</button>
+                </ul>
+            </section>
+        </dialog>
+        <script type="module" src=".\js\drlkjs.js"></script>
+    </body>
+</html>
