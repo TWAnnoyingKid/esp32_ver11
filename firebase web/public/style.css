@@ -1,0 +1,645 @@
+.NameOfDevice{
+    font-size: 3.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    color: azure;
+    margin:0px auto;
+}
+.NameOfSpace{
+    color: azure;
+    width: 70%;
+    height: 7%;
+    position: absolute;
+    top: 5%;
+    right: 14.5%;
+}
+.SS{
+    font-size: 200%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 80%;
+    width: 260px;
+}
+/* .bar{
+    border-radius:15px;
+    box-shadow: 0 0 50px rgb(51, 255, 0);
+    width: 100%; 
+    margin:0px auto;
+} */ 
+.stat{
+    font-size: 200%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+.login{
+    font-size: 20px;
+    display: inline;
+}
+.gatelock{
+    -webkit-filter: drop-shadow(0 0 50px rgb(255, 0, 0));
+}
+.gateunlock{
+    -webkit-filter: drop-shadow(0 0 50px rgb(0, 255, 0));
+}
+.accountData{
+    width :250px;
+    height : 25px;
+    display: inline;
+    color: azure;
+    border:0;
+    background-color: rgb(34, 34, 124);
+    border-radius: 5px;
+}
+.name{
+    display: inline;
+    font-size: 2.1em;
+    color: azure;
+}
+.ChangeName{
+    width :10%;
+    height : 10%;  
+}
+.ChangeDName{
+    width :12%;  
+    position: absolute;
+    right: 0.5%;
+    top: 3.5%;
+}
+dialog{
+    color: azure;
+    border:0;
+    border-radius:15px;
+    background-color: rgb(80, 80, 187);
+    position: relative;
+    padding: 0;
+    box-shadow: 0 0 30px rgb(0, 65, 243);
+}
+.enter{
+    color: azure;
+    font-size: 1.1em;
+    font-weight: 700;
+    border:0;
+    height: 100%;
+    width: 49.3%;
+    background-color: rgba(233, 88, 88, 0.966);
+}
+.enter:hover{
+    box-shadow: 0 0 30px rgba(233, 88, 88, 0.966);
+}
+.enter1{
+    color: azure;
+    font-size: 1.1em;
+    font-weight: 700;
+    border:0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(151, 151, 156, 0.966);
+}
+.enter1:hover{
+    background-color: rgba(233, 88, 88, 0.966);
+    box-shadow: 0 0 30px rgba(233, 88, 88, 0.966);
+}
+.cancel{
+    color: azure;
+    font-size: 1.1em;
+    font-weight: 700;
+    border:0;
+    height: 100%;
+    width: 49.1%;
+    background-color: rgba(151, 151, 156, 0.966);
+}
+.cancel:hover{
+    box-shadow: 0 0 30px rgba(116, 116, 119, 0.966);
+}
+.diainput{
+    border:0;
+    width: 90%;
+    height: 20%;
+    border-radius:5px;
+}
+ul{
+    background-color: rgba(151, 151, 156, 0.966);
+}
+.add{
+    width :50%;
+    height : 20%;
+    font-size: 1.3em; 
+    font-weight:700;
+    color: azure;
+    border:0;
+    background-color: rgb(34, 34, 124);
+    border-radius:15px;
+    height: 40px;
+}
+.add:hover{
+    background-color: rgb(2, 2, 124);
+    transform: scale(1.05);
+    box-shadow: 0 0 5px rgb(0, 65, 243);
+}
+.return{
+    transform: translateX(0);
+    transition: transform 0.4s linear 0s;
+}
+.return:hover{
+    transform: translateX(-10px);
+    transition: transform 0.4s linear 0s;
+}
+.Time{
+    width :100%;
+    height : 35%;
+    font-size: 1.3em; 
+    font-weight:700;
+    color: azure;
+    border:0;
+    background-color: rgb(34, 34, 124);
+    border-radius:15px;
+    height: 40px;
+    transition: transform 0.4s linear 0s;
+}
+.Time:hover{
+    background-color: rgb(2, 2, 124);
+    transform: scale(1.05);
+    box-shadow: 0 0 5px rgb(0, 65, 243);
+    transition: transform 0.4s linear 0s;
+}
+.Timebtn{
+    width :100%;
+    height : 35%;
+    font-size: 0.6em; 
+    font-weight:700;
+    color: azure;
+    border:0;
+    background-color: rgb(22, 22, 78);
+    border-radius:10px;
+    transition: transform 0.4s linear 0s;
+}
+.Timebtn:hover{
+    background-color: rgb(2, 2, 124);
+    transform: scale(1.05);
+    box-shadow: 0 0 5px rgb(0, 65, 243);
+    transition: transform 0.4s linear 0s;
+}
+.hvr-back{
+    width: 50px;
+    height: 50px;
+}
+.ip{
+    border:0;
+    width: 25%;
+    height: 20%;
+    border-radius:5px;
+}
+.login{
+    width: 60%; 
+    height: 10%; 
+    font-size: 1em; 
+    font-weight:700; 
+    background-color: rgb(34, 34, 124);  
+    border:0 ;
+    border-radius: 5px; 
+    color: azure;
+}
+.spaceName{
+    font-weight:700; 
+    color: azure;
+}
+button[name=pdevices]{
+    width: 60px; 
+    height: 60px; 
+    font-size: 20px; 
+    font-weight: 700;
+    position: absolute;
+    left: 25%;
+    color: azure;
+    border:0;
+    background-color: rgb(22, 22, 78);
+    border-radius:10px;
+    transition: transform 0.4s linear 0s;
+}
+button[name=pdevices]:hover{
+    background-color: rgb(2, 2, 124);
+    transform: scale(1.1);
+    transition: transform 0.4s linear 0s;
+    box-shadow: 0 0 15px rgb(0, 65, 243);
+}
+button[name=space]{
+    width: 60px; 
+    height: 60px; 
+    font-size: 20px; 
+    font-weight: 700;
+    position: absolute;
+    right: 23%;
+    color: azure;
+    border:0;
+    background-color: rgb(22, 22, 78);
+    border-radius:10px;
+    transition: transform 0.4s linear 0s;
+}
+button[name=space]:hover{
+    background-color: rgb(2, 2, 124);
+    transform: scale(1.1);
+    transition: transform 0.4s linear 0s;
+    box-shadow: 0 0 15px rgb(0, 65, 243);
+}
+button[name=devices]{
+    width :50%;
+    height : 10%;
+    font-size: 1.3em; 
+    font-weight:700;
+    color: azure;
+    border:0;
+    background-color: rgb(22, 22, 78);
+    border-radius:10px;
+    opacity: 1;
+    transition: transform 0.4s linear 0s;
+}
+button[name=devices]:hover{
+    background-color: rgb(2, 2, 124);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgb(0, 65, 243);
+    transition: transform 0.4s linear 0s;
+}
+.ChangeDName:hover{
+    -webkit-filter: drop-shadow(0 0 10px rgb(255, 255, 255));
+}
+.ChangeName:hover{
+    -webkit-filter: drop-shadow(0 0 10px rgb(255, 255, 255));
+}
+
+button[name=NEWdevices]{
+    width :80%;
+    height : 10%;
+    font-size: 1.2em; 
+    font-weight:700;
+    border:0;
+    color: azure;
+    border:0;
+    background-color: rgb(41, 41, 128);
+    border-radius:10px;
+    transition: transform 0.4s linear 0s;
+}
+button[name=NEWdevices]:hover{
+    background-color: rgb(2, 2, 124);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgb(0, 65, 243);
+    transition: transform 0.4s linear 0s;
+}
+.SWon{
+    width :3.4em;
+    height : 3.4em;
+    font-size: 20px; 
+    font-weight:700;
+    border-radius:100px;
+    box-shadow: 0 0 35px rgb(51, 255, 0);
+    transition: transform 0.4s linear 0s;
+}
+.SWon:hover{
+    box-shadow: 0 0 35px rgb(255, 0, 0);
+    transition: transform 0.4s linear 0s;
+}
+.SWoff{
+    width :3.4em;
+    height : 3.4em;
+    font-size: 20px; 
+    font-weight:700;
+    border-radius:100px;
+    box-shadow: 0 0 35px rgb(255, 0, 0);
+    transition: transform 0.4s linear 0s;
+}
+.SWoff:hover{
+    box-shadow: 0 0 35px rgb(51, 255, 0);
+    transition: transform 0.4s linear 0s;
+}
+.AD{
+    width :80%;
+    height : 10%;
+}
+.loginBTN{
+    width :60%;
+    height : 350px;
+    margin:0px auto;
+    /* display: flex;
+    justify-content: center; */
+    border:0;
+}
+.head{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center; 
+    margin:0px auto;
+    background-color: rgb(2, 2, 31);
+}
+.goBackDevicePage{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    cursor:pointer;
+}
+.bmeNumberAG{
+    font-size: 7em; 
+    display: inline;
+    -webkit-filter: drop-shadow(0 0 30px rgb(0, 255, 0));
+}
+.bmeNumberAY{
+    font-size: 7em; 
+    display: inline;
+    -webkit-filter: drop-shadow(0 0 30px rgb(235, 252, 0));
+}
+.bmeNumberAR{
+    font-size: 7em; 
+    display: inline;
+    -webkit-filter: drop-shadow(0 0 30px rgb(255, 0, 0));
+}
+.bmeNumberAB{
+    font-size: 7em; 
+    display: inline;
+    -webkit-filter: drop-shadow(0 0 30px rgb(0, 110, 255));
+}
+.bmeNumberBG{
+    font-size: 3em; 
+    display: inline;
+    -webkit-filter: drop-shadow(0 0 20px rgb(0, 255, 0));
+}
+.bmeNumberBY{
+    font-size: 3em; 
+    display: inline;
+    -webkit-filter: drop-shadow(0 0 20px rgb(235, 252, 0));
+}
+.bmeNumberBR{
+    font-size: 3em; 
+    display: inline;
+    -webkit-filter: drop-shadow(0 0 20px rgb(255, 0, 0));
+}
+.bmeNumberBB{
+    font-size: 3em; 
+    display: inline;
+    -webkit-filter: drop-shadow(0 0 20px rgb(0, 110, 255));
+}
+.bmeTag{
+    width :50%;
+    font-size: 2.2em; 
+    display: inline;
+}
+.bme{
+    color: azure;
+    width :70%;
+    margin:0px auto;
+}
+.deviceBtn{
+    margin:0px auto;
+    width :100%;
+}
+.NEWdeviceBtn{
+    margin:0px auto;
+    width :55%;
+    height: 10%;
+    color: azure;
+    border:0;
+    background-color: rgb(22, 22, 78);
+    border-radius:10px;
+}
+.back{
+    height : 35px;
+    font-size: 20px; 
+    font-weight:700;
+    border:0;
+    border-radius:10px;
+    color: azure;
+    background-color: rgb(22, 22, 78);
+}
+.back:hover{
+    background-color: rgb(2, 2, 124);
+    transform: scale(1.05);
+    box-shadow: 0 0 5px rgb(0, 65, 243);
+}
+.delete{
+    height : 35px;
+    font-size: 20px; 
+    font-weight:700;
+    border:0;
+    position: absolute;
+    left: 10%;
+    border-radius:10px;
+    color: azure;
+    background-color: rgb(22, 22, 78);
+}
+.delete:hover{
+    background-color: rgb(2, 2, 124);
+    transform: scale(1.05);
+    box-shadow: 0 0 5px rgb(0, 65, 243);
+}
+.move{
+    height : 35px;
+    font-size: 20px; 
+    font-weight:700;
+    border:0;
+    position: absolute;
+    right: 10%;
+    border-radius:10px;
+    color: azure;
+    background-color: rgb(22, 22, 78);
+}
+.move:hover{
+    background-color: rgb(2, 2, 124);
+    transform: scale(1.05);
+    box-shadow: 0 0 5px rgb(0, 65, 243);
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+::-webkit-scrollbar-button {
+    background: transparent;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-track-piece {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(10, 0, 150, 0.411);
+    border: 0.5px solid rgb(34, 43, 53);
+}
+::-webkit-scrollbar-track {
+    box-shadow: transparent;
+}
+
+.moi{
+    width :205px;
+    height : 35px;
+    font-size: 20px; 
+    font-weight:700;  
+}
+.humidBTN{
+    width :100px;
+    height : 35px;
+    font-size: 20px; 
+    font-weight:700;  
+}
+.layout {
+    width: 320px;
+    height: 800px;
+    display: grid;
+    grid:
+    "header" 10%
+    "main" 75%
+    "footer" 20%
+    / 100%;
+    gap: 8px;
+    position: relative;
+}
+.mainlayout {
+    width: 360px;
+    height: 800px;
+    display: grid;
+    grid:
+    "mainheader" 18%
+    "maincenter" 65%
+    "mainfooter" 10%
+    / 100%;
+    gap: 8px;
+    position: relative;
+}
+.diasection {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid:
+    "name-header" 20%
+    "name-main" 50%
+    / 100%;
+    gap: 8px;
+    position: relative;
+}
+
+.header { grid-area: header; }
+.main { grid-area: main; }
+.footer { grid-area: footer; }
+
+.mainheader { grid-area: mainheader; }
+.maincenter { grid-area: maincenter; }
+.mainfooter { grid-area: mainfooter; }
+
+.name-header { grid-area: name-header; }
+.name-main { grid-area: name-main; }
+
+#checkEye {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 36%;
+    right: 16%;
+    transform: translateY(-50%);
+}
+#scheckEye {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 31.3%;
+    right: 16%;
+    transform: translateY(-50%);
+}
+#acheckEye {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 37%;
+    right: 16%;
+    transform: translateY(-50%);
+}
+#qcheckEye {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 29.8%;
+    right: 16%;
+    transform: translateY(-50%);
+}
+#wcheckEye {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    top: 35.4%;
+    right: 16%;
+    transform: translateY(-50%);
+}
+.confirm{
+    width: 60%; 
+    height: 10%; 
+    font-size: 1em; 
+    font-weight:700;
+    color: azure;
+    border:0;
+    background-color: rgb(34, 34, 124);
+    border-radius: 5px;
+}
+.confirm:hover{
+    background-color: rgb(2, 2, 124);
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgb(0, 65, 243);
+    transition: transform 0.4s linear 0s;
+}
+.resend{
+    width: 110px; 
+    height: 30px; 
+    font-weight: 700; 
+    display: none;
+    color: azure;
+    border:0;
+    background-color: rgb(34, 34, 124);
+    border-radius: 5px;
+}
+.resend:hover{
+    background-color: rgb(2, 2, 124);
+    transform: scale(1.05);
+    box-shadow: 0 0 5px rgb(0, 65, 243);
+    transition: transform 0.4s linear 0s;
+}
+.mySwiper {
+    width: 100%;
+    height: 90%;
+}
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.swiper{
+    --swiper-navigation-color: #0957b1;
+    --swiper-navigation-size: 30px;
+}
+.spaseBTN{
+    width: 100%;
+    height: 100%;
+}
+.mySwiper1 {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 80%;
+    height: 10%;
+}
+.mySwiper1 .selected{ 
+    height: 110%;
+    font-weight: 700;
+    background-color:rgb(2, 2, 124);
+    color: azure;
+    font-size: 2.5em;
+}
+.mySwiper1 .swiper-slide{
+    background-color:rgb(22, 22, 78);
+    border-radius:10px;
+    font-size: 1.5em;
+}
