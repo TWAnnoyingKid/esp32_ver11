@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html  class="head">
+    <head>
+        <title id="Title">BME</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    </head>
+    <body>
+        <h1 id="NameOfDevice"  class="NameOfDevice"></h1>
+        <h2 id="humidTAG" style="display:inline"></h2>
+        <h2 id="humid" style="display:inline"></h2><br>
+        <div style="width: 205px;margin:0px auto;">
+            <button id="water" class="moi">澆水</button><br><br>
+            <button id="waterTime" class="moi">定時澆水</button><br><br>
+            <button id="humidHigh" class="humidBTN">最高濕度</button>
+            <button id="humidLow" class="humidBTN">最低濕度</button><br><br>
+        </div>
+        <br><br><br>
+        <div class="goBackDevicePage">
+            <a href="devicepage.html">
+                <button type="button" id="back" class="back">回到裝置頁</button><br>
+            </a>
+        </div>
+
+        <dialog id="WTCheck">
+            <h1>是否更改澆水時間?</h1>
+            <button id="WTconfirm">確認</button>
+            <button onclick="WTCheck.close()">取消</button>
+        </dialog>
+        <dialog id="WTSet"> 
+            <h1>設定澆水時間</h1>
+            <input id="WThr" type="number" min="0" max="23">
+            時 : 
+            <input id="WTmin" type="number" min="0" max="59">
+            分
+            <button id="WTSetconfirm">確認</button>
+            <button onclick="WTSet.close()">取消</button>
+        </dialog>
+        <dialog id="HourSetWrong">
+            <h1>Hour 輸入出現問題</h1>
+            <p>Hour 設定範圍為 '0~23'</p>
+            <button onclick="HourSetWrong.close()">確定</button>
+        </dialog>
+        <dialog id="MinSetWrong">
+            <h1>Minute 輸入出現問題</h1>
+            <p>Minute 設定範圍為 '0~59'</p>
+            <button onclick="MinSetWrong.close()">確定</button>
+        </dialog>
+        <dialog id="UserLost"  class="wrong" style="width: 300px;" Align="Center">
+            <br>
+            <p style="font-size: 160%; font-weight: 700;">糟糕! 甚麼地方出錯了!<br>請再試一次!</p>
+            <ul style="padding: 0; margin: 0; height: 30px;">
+                <button onclick="UserLost.close(); location.href='mainpage.html'" class="enter1">確認</button>
+            </ul>
+        </dialog>
+
+        <dialog id="removeDia" class="timewrong" style="width: 300px;" Align="Center"> 
+            <section class="diasection">
+                <div class="name-header">
+                    <p style="font-size: 200%; font-weight: 700;">刪除裝置?</p>
+                </div>
+                <div class="name-main" Align="Center"><br>
+                    <p>請輸入"REMOVE"以確認</p>
+                    <input id="REMOVEword" placeholder="REMOVE" class="diainput">
+                </div>
+                <ul style="padding: 0; margin: 0;">
+                    <button id="removeConfirm" class="enter">確認</button>
+                    <button onclick="removeDia.close()" class="cancel">取消</button>
+                </ul>
+            </section>
+        </dialog>
+
+        <script type="module" src=".\js\moijs.js"></script>
+    </body>
+</html>
