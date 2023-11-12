@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html class="head">
+    <head >
+        <title id="Title">addDevices</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+        
+    </head>
+    <body Align="Center">
+        <section class="mainlayout">
+            <div class="mainheader" style="display: flex;align-items: center; ">
+                <img src="picture\return.png" width="50px" height="50px" onclick="location.href='devicepage.html'" class="return">
+                <div class="SS">
+                    <div style="width:25% ; display: inline-block;">
+                        <img src="picture\sloth.png" width="100%" height="90%">  
+                    </div>
+                    <h4 style="color: azure;"> sMART <br> sTUFF</h4>
+                </div>
+            </div>
+            <div class="maincenter">
+                <div >
+                    <button id="search" onclick="ipSet.showModal()" class="add">搜尋裝置</button></div>
+                    <br>
+                    <div id="deviceplace" style="overflow-y:scroll; height: 435px; width: 380px;" Align="Center"><p>  </p></div>
+                </div>
+            <div class="mainfooter">
+                </div>
+        </section>
+
+        <dialog id="ipSet" style="width: 370px;" Align="Center">
+            <section class="diasection">
+                <div class="name-header">
+                    <p style="font-size: 140%; font-weight: 700;">請輸入連線至的WIFI的IP位址</p>
+                </div>
+                <div class="name-main"><br><br>
+                    <input id="ip1" class="ip" maxlength="3" minlength="1" placeholder="192" style="width: 50px;" value="192"> .
+                    <input id="ip2" class="ip" maxlength="3" minlength="1" placeholder="168" style="width: 50px;" value="168"> .
+                    <input id="ip3" class="ip" maxlength="3" minlength="1" placeholder="xxx" style="width: 50px;"> .
+                    <input id="ip4" class="ip" maxlength="3" minlength="1" placeholder="xxx" style="width: 50px;">   
+                </div>
+                <ul style="padding: 0; margin: 0;">
+                    <button id="ipSetconfirm" class="enter">確認</button>
+                    <button onclick="ipSet.close()" class="cancel">取消</button>
+                </ul>
+            </section>
+        </dialog>
+        <dialog id="ipSetError">
+            <h1>IP位址輸入錯誤</h1>
+            <button onclick="ipSetError.close()">取消</button>
+        </dialog>
+        <dialog id="deviceSet" style="width: 300px;" Align="Center">
+            <p id="macinfo" style="display: none;"></p>
+            <p id="eleinfo" style="display: none;"></p>
+            <p id="ipinfo" style="display: none;"></p>
+            <section class="diasection">
+                <div class="name-header">
+                    <p style="font-size: 160%; font-weight: 700;">請輸入裝置名稱</p>
+                </div>
+                <div class="name-main"><br><br>
+                    <input type="text" id="devicename" class="diainput" placeholder="請輸入裝置名稱">
+                    <br><br>
+                    <div>
+                        <select id="modeSet" style="width:274px; height:30px; font-size: 15px; color: azure;
+                    background-color: rgb(22, 22, 78);border:0;border-radius:10px;" >
+                        <option> 將裝置儲存至 </option>
+                        <option id="s1" style="display: none;">  </option>
+                        <option id="s2" style="display: none;">  </option>
+                        <option id="s3" style="display: none;">  </option>
+                        <option id="s4" style="display: none;">  </option>
+                        <option id="s5" style="display: none;">  </option>
+                        <option id="s6" style="display: none;">  </option>
+                        <option id="s7" style="display: none;">  </option>
+                        <option id="s8" style="display: none;">  </option>
+                    </select>
+                    </div>
+                </div>
+                <ul style="padding: 0; margin: 0;">
+                    <button id="deviceSetconfirm" class="enter">確認</button>
+                    <button onclick="deviceSet.close()" class="cancel">取消</button>
+                </ul>
+            </section>
+        </dialog>
+        
+        
+        <script type="module" src=".\js\addDevicejs.js"></script>
+        
+    </body>
+</html>
