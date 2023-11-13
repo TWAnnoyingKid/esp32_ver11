@@ -336,16 +336,14 @@ function newDname(){
     nameD.close()
 }
 function controller(){
-    if (cstat == "y"){
-        if(CbC.innerHTML == '燈條控制'){
-            update(ref(db, MAC),{
-                CONTROLBYCONTROLLER: "0"
-            })
-        }else if(CbC.innerHTML == '控制器控制'){
-            update(ref(db, MAC),{
-                CONTROLBYCONTROLLER: "1"
-            })
-        }
+    if(CbC.innerHTML == '燈條控制'){
+        update(ref(db, MAC),{
+            CONTROLBYCONTROLLER: "0"
+        })
+    }else if(CbC.innerHTML == '控制器控制'){
+        update(ref(db, MAC),{
+            CONTROLBYCONTROLLER: "1"
+        })
     }
 }
 function setcontroller(){
