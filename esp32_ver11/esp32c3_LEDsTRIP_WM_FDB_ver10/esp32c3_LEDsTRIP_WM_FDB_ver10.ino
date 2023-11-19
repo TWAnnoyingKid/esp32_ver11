@@ -31,7 +31,7 @@ Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 int MinBrightness = 0;     
 int MaxBrightness = 255;  
 int fadeInWait = 15;     
-int fadeOutWait = 15; 
+int fadeOutWait = 10; 
 
 #define DATABASE_URL "https://esp8266-ai2-default-rtdb.firebaseio.com"
 #define API_KEY "AIzaSyAF4OdtYUAomk_4WnvE5MXb_nphlQ33UyA"
@@ -70,7 +70,7 @@ void setup() {
     digitalWrite(LED_PIN, HIGH);
   }
   digitalWrite(LED_PIN, LOW);
-  wifiManager.autoConnect("sMART sTUFF");
+  wifiManager.autoConnect("sMART sTUFF 智慧燈條");
 
   A = WiFi.macAddress();
   IP = WiFi.localIP().toString();
@@ -303,10 +303,10 @@ void color_change(){
       colorWipe(strip.Color(R, G, B), 5);
       break;
     case 2:  //單色呼吸
-      rgbBreathe(strip.Color(R, G, B), 50);
+      rgbBreathe(strip.Color(R, G, B), 100);
       break;
     case 3:  //單色跑馬燈
-      theaterChase(strip.Color(R, G, B), 50);
+      theaterChase(strip.Color(R, G, B), 100);
       break;
     case 4:  //彩虹
       rainbow(10);
@@ -331,9 +331,9 @@ void colorWipe(uint32_t color, int wait) {
 void theaterChase(uint32_t color, int wait) {
   strip.setBrightness(255); 
   for(int a=0; a<1; a++) { 
-    for(int b=0; b<3; b++) { 
+    for(int b=0; b<6; b++) { 
       strip.clear();       
-      for(int c=b; c<strip.numPixels(); c += 3) {
+      for(int c=b; c<strip.numPixels(); c += 6) {
         strip.setPixelColor(c, color);
       }
       strip.show(); 
@@ -343,37 +343,36 @@ void theaterChase(uint32_t color, int wait) {
 }
 
 void rgbBreathe(uint32_t c, uint8_t y) {
-    for (uint8_t b = MinBrightness; b < MaxBrightness; b++) {
-      strip.setBrightness(b * 255 / 255);
-      for (uint16_t i = 0; i < strip.numPixels(); i++) {
-        strip.setPixelColor(i, c);
-      }
-      strip.show();
-      delay(fadeInWait);
+  int i = 0;
+  for (i = 0; i <255 ; i++) {
+    for(int j=0; j<strip.numPixels(); j++) {
+      strip.setPixelColor(j, c);
+      strip.setBrightness(i * 255 / 255);
     }
-    strip.setBrightness(MaxBrightness * 255 / 255);
-    for (uint16_t i = 0; i < strip.numPixels(); i++) {
-      strip.setPixelColor(i, c);
-      strip.show();
-      delay(y);
+    strip.show();
+    delay(10);
+  }
+  // delay(y);
+  for (i = 255; i > 0; i--) {
+    for(int j=0; j<strip.numPixels(); j++) {
+      strip.setPixelColor(j, c);
+      strip.setBrightness(i * 255 / 255);
     }
-    for (uint8_t b = MaxBrightness; b > MinBrightness; b--) {
-      strip.setBrightness(b * 255 / 255);
-      for (uint16_t i = 0; i < strip.numPixels(); i++) {
-        strip.setPixelColor(i, c);
-      }
-      strip.show();
-      delay(fadeOutWait);
-    }
-  delay(100);
+    strip.show();
+    delay(10);
+  }
+  delay(y);
 }
 
-void rainbow(int wait) {
-  for(long firstPixelHue = 0; firstPixelHue < 1*65536; firstPixelHue += 256) {
-    strip.setBrightness(255); 
-    strip.rainbow(firstPixelHue);
+
+void rainbow(uint8_t wait) {
+  uint16_t i, j;
+  for(j=0; j<256; j++) {
+    for(i=0; i<strip.numPixels(); i++) {
+      strip.setPixelColor(i, Wheel((i+j) & 255));
+    }
     strip.show();
-    delay(wait); 
+    delay(wait);
   }
 }
 
@@ -405,11 +404,11 @@ void close_led(uint32_t color, int wait){
 }
 
 uint32_t Wheel(byte WheelPos) {
-  WheelPos = 140 - WheelPos;       //the value here means - for 255 the strip will starts with red, 127-red will be in the middle, 0 - strip ends with red.
-  if (WheelPos < 85) {
+  WheelPos = 255 - WheelPos;
+  if(WheelPos < 85) {
     return strip.Color(255 - WheelPos * 3, 0, WheelPos * 3);
   }
-  if (WheelPos < 170) {
+  if(WheelPos < 170) {
     WheelPos -= 85;
     return strip.Color(0, WheelPos * 3, 255 - WheelPos * 3);
   }
