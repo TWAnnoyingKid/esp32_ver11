@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html class="head">
+    <head >
+        <title id="Title">BME</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="webcss.css">
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    </head>
+    <body>
+        <section class="layout">
+            <div class="header">
+                <br>
+                <img src="picture\return.png" width="50px" height="50px" onclick="location.href='devicepage.html'" class="return">
+                <div class="NameOfSpace" Align="Center">
+                    <h1  id="NameOfSpace" >總裝置</h1>
+                </div>
+                <img src="picture\edit.png" id="ChangeDName" class="ChangeDName" style="display: inline;">
+            </div>
+            <div class="main">
+                <div class="main">
+                    <h1 id="NameOfDevice" class="NameOfDevice"></h1>
+                    <div style="display: flex;justify-content: center;align-items: center; ">
+                        <img src="picture\online.png" width="16px" height="16px"> <br>
+                    </div>
+                    <br>
+                </div>
+                <div class="bme">
+                    <div style="width: 80%; display: inline-block;" >
+                        <h2 class="bmeTag" >溫度</h2>
+                    </div>
+                    <div style="width: 20%; display: inline;">
+                        <h2 class="bmeTag">°C</h2> 
+                    </div>
+                    <h2 id="TempA" class="bmeNumberAG">00</h2> 
+                    <h4 id="TempB" class="bmeNumberBG">. 00</h4> 
+                </div>
+                <br><br>
+                <div class="bme" >
+                    <div style="width: 80%; display: inline-block;" >
+                        <h2 class="bmeTag" >濕度</h2>
+                    </div>
+                    <div style="width: 20%; display: inline;">
+                        <h2 class="bmeTag">%</h2> 
+                    </div>
+                    <h2 id="HumidA" class="bmeNumberAG">00</h2> 
+                    <h4 id="HumidB" class="bmeNumberBG">. 00</h4>  
+                </div>
+            </div>
+            <div class="footer">
+                <div class="goBackDevicePage">
+                    <br><br>
+                    <button id="delete" class="delete" onclick="removeDia.showModal()">刪除裝置</button> 
+                    <button id="move" class="move" onclick="moveDia.showModal()">移動裝置</button>
+                </div>
+            </div>
+        </section>
+
+        <dialog id="loading"style="width: 105px; height: 105px;" Align="Center"> 
+            <div class="loader"></div>
+        </dialog>
+
+        <dialog id="UserLost"  class="wrong" style="width: 300px;" Align="Center">
+            <br>
+            <p style="font-size: 160%; font-weight: 700;">糟糕! 甚麼地方出錯了!<br>請再試一次!</p>
+            <ul style="padding: 0; margin: 0; height: 30px;">
+                <button onclick="UserLost.close(); location.href='mainpage.html'" class="enter1">確認</button>
+            </ul>
+        </dialog>
+
+        <dialog id="nameD" class="namecheck" style="width: 300px;" Align="Center"> 
+            <section class="diasection">
+                <div class="name-header">
+                    <p style="font-size: 160%; font-weight: 700;">請輸入新的裝置名稱</p>
+                </div>
+                <div class="name-main"><br><br>
+                    <p id="Dname" style="display: inline;"></p>
+                    <p></p>
+                    <input id="DnewName" class="diainput" placeholder= '請輸入新的裝置名稱'>
+                </div>
+                <ul style="padding: 0; margin: 0;">
+                    <button id="Dconfirm" class="enter">確認</button>
+                    <button onclick="nameD.close()" class="cancel">取消</button>
+                </ul>
+            </section>
+        </dialog>
+
+        <dialog id="removeDia" class="timewrong" style="width: 300px;" Align="Center"> 
+            <section class="diasection">
+                <div class="name-header">
+                    <p style="font-size: 200%; font-weight: 700;">刪除裝置?</p>
+                </div>
+                <div class="name-main" Align="Center"><br>
+                    <p>請輸入"REMOVE"以確認</p>
+                    <input id="REMOVEword" placeholder="REMOVE" class="diainput">
+                </div>
+                <ul style="padding: 0; margin: 0;">
+                    <button id="removeConfirm" class="enter">確認</button>
+                    <button onclick="removeDia.close()" class="cancel">取消</button>
+                </ul>
+            </section>
+        </dialog>
+        
+        <dialog id="moveDia" class="timewrong" style="width: 300px;" Align="Center"> 
+            <section class="diasection">
+                <div class="name-header">
+                    <p style="font-size: 200%; font-weight: 700;">移動裝置</p>
+                </div>
+                <div class="name-main" Align="Center"><br>
+                    <p>將裝置移動至 : </p>
+                    <select id="modeSet" style="width:260px; height:35px; font-size: 15px; color: azure;
+                    background-color: rgb(22, 22, 78);border:0;border-radius:10px;" >
+                        <option> 場景選單 </option>
+                        <option id="rm" style="display: none; background-color: brown;">從此場景中移除</option>
+                        <option id="s1" style="display: none;">  </option>
+                        <option id="s2" style="display: none;">  </option>
+                        <option id="s3" style="display: none;">  </option>
+                        <option id="s4" style="display: none;">  </option>
+                        <option id="s5" style="display: none;">  </option>
+                        <option id="s6" style="display: none;">  </option>
+                        <option id="s7" style="display: none;">  </option>
+                        <option id="s8" style="display: none;">  </option>
+                    </select>
+                </div>
+                <ul style="padding: 0; margin: 0;">
+                    <button id="moveConfirm" class="enter">確認</button>
+                    <button onclick="moveDia.close()" class="cancel">取消</button>
+                </ul>
+            </section>
+        </dialog>
+        <script type="module" src=".\js\bmejs.js"></script>
+    </body>
+</html>
